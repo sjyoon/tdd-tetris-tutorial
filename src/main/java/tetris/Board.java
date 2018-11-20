@@ -8,6 +8,7 @@ public class Board {
 
     private final int rows;
     private final int columns;
+    private boolean falling = false;
 
     public Board(int rows, int columns) {
         this.rows = rows;
@@ -18,10 +19,22 @@ public class Board {
         String s = "";
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < columns; col++) {
-                s += ".";
+                if (row == 0 && col == 1 && falling)
+                    s += "X";
+                else
+                    s += ".";
             }
             s += "\n";
         }
         return s;
+    }
+    public boolean hasFalling() {
+        return falling;
+    }
+    public void drop(Block block) {
+        falling = true;
+    }
+
+    public void tick() {
     }
 }
